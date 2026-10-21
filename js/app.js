@@ -26,6 +26,30 @@
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?
 
+
+// ------------------------------------------------------------
+// ÉTAPE 2 : État de l'application
+// ------------------------------------------------------------
+// L'application doit "se souvenir" de ses choix pendant la session.
+// TODO : déclarez les variables d'état nécessaires.
+// Question : de quelles informations avez-vous besoin ?
+//  (cours choisi, créneau choisi, emplacements choisis...)
+// Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
+
+
+
+// ------------------------------------------------------------
+// ÉTAPE 3 : Afficher les cours (US01)
+// ------------------------------------------------------------
+// TODO : écrivez une fonction qui parcourt `cours` et crée une carte par cours.
+//  - Étudiez d'abord une carte statique dans index.html (c'est votre modèle).
+//  - Videz ensuite #courses-container, puis recréez les cartes depuis les données.
+//  - Chaque carte affiche : visuel, catégorie, nom, durée, coach, prix.
+// Questions :
+//  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
+//  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
+//  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
+
 const coursecontainer = document.getElementById('courses-container');
 let carts = '';
 
@@ -42,39 +66,6 @@ for (i = 0; i < cours.length; i++) {
 }
 coursecontainer.innerHTML = carts;
 
-// ------------------------------------------------------------
-// ÉTAPE 2 : État de l'application
-// ------------------------------------------------------------
-// L'application doit "se souvenir" de ses choix pendant la session.
-// TODO : déclarez les variables d'état nécessaires.
-// Question : de quelles informations avez-vous besoin ?
-//  (cours choisi, créneau choisi, emplacements choisis...)
-// Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
-
-
-const cartes = document.querySelectorAll('.carte');
-cartes.forEach(function (carte) {
-  carte.addEventListener('click', function () {
-
-    cartes.forEach(function (c) {
-      c.classList.remove('ring-2', 'ring-teal-600');
-    });
-
-    carte.classList.add('ring-2', 'ring-teal-600');
-  });
-});
-// ------------------------------------------------------------
-// ÉTAPE 3 : Afficher les cours (US01)
-// ------------------------------------------------------------
-// TODO : écrivez une fonction qui parcourt `cours` et crée une carte par cours.
-//  - Étudiez d'abord une carte statique dans index.html (c'est votre modèle).
-//  - Videz ensuite #courses-container, puis recréez les cartes depuis les données.
-//  - Chaque carte affiche : visuel, catégorie, nom, durée, coach, prix.
-// Questions :
-//  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
-//  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
-//  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
-77
 
 // ------------------------------------------------------------
 // ÉTAPE 4 : Sélectionner un cours (US02)
@@ -88,6 +79,17 @@ cartes.forEach(function (carte) {
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
 
+const cartes = document.querySelectorAll('.carte');
+cartes.forEach(function (carte) {
+  carte.addEventListener('click', function () {
+
+    cartes.forEach(function (c) {
+      c.classList.remove('ring-2', 'ring-teal-600');
+    });
+
+    carte.classList.add('ring-2', 'ring-teal-600');
+  });
+});
 
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
