@@ -26,21 +26,20 @@
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?
 
-const coursecontainer=document.getElementById('courses-container');
+const coursecontainer = document.getElementById('courses-container');
 let carts = '';
 
-for (i=0;i<cours.length;i++){
-    carts+=`<article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-2 ring-teal-600 transition hover:shadow-md" data-id="yoga">
+for (i = 0; i < cours.length; i++) {
+  carts += `<article class="carte cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-md" data-id="yoga">
             <img src="${cours[i].image}" alt="Visuel du cours ${cours[i].nom}" class="h-36 w-full object-cover" />
             <div class="space-y-1 p-4">
-              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">Yoga</span>
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${cours[i].id}</span>
               <h3 class="text-lg font-semibold text-slate-900">${cours[i].nom}</h3>
               <p class="text-sm text-slate-600">${cours[i].duree}, avec ${cours[i].coach}</p>
-              <p class="pt-1 text-base font-bold text-slate-900">${cours[i].prix}<span class="text-sm font-normal text-slate-500">par place</span></p>
+              <p class="pt-1 text-base font-bold text-slate-900">${cours[i].prix} £ <span class="text-sm font-normal text-slate-500">par place</span></p>
             </div>
           </article>`
 }
-
 coursecontainer.innerHTML = carts;
 
 // ------------------------------------------------------------
@@ -53,6 +52,17 @@ coursecontainer.innerHTML = carts;
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
 
 
+const cartes = document.querySelectorAll('.carte');
+cartes.forEach(function (carte) {
+  carte.addEventListener('click', function () {
+
+    cartes.forEach(function (c) {
+      c.classList.remove('ring-2', 'ring-teal-600');
+    });
+
+    carte.classList.add('ring-2', 'ring-teal-600');
+  });
+});
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
 // ------------------------------------------------------------
@@ -64,7 +74,7 @@ coursecontainer.innerHTML = carts;
 //  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
-
+77
 
 // ------------------------------------------------------------
 // ÉTAPE 4 : Sélectionner un cours (US02)
