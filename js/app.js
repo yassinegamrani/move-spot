@@ -54,7 +54,7 @@ const coursecontainer = document.getElementById('courses-container');
 let carts = '';
 
 for (i = 0; i < cours.length; i++) {
-  carts += `<article class="carte cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-md" data-id="yoga">
+  carts += `<article class="carte cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-md" data-id="${cours[i].id}">
             <img src="${cours[i].image}" alt="Visuel du cours ${cours[i].nom}" class="h-36 w-full object-cover" />
             <div class="space-y-1 p-4">
               <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${cours[i].id}</span>
@@ -79,15 +79,32 @@ coursecontainer.innerHTML = carts;
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
 
+let articleId;
+let selectedCours;
+
+const coursTitle = document.querySelector("#selected-course-title")
 const cartes = document.querySelectorAll('.carte');
+const slotsContainer = document.getElementById('slots-container')
 cartes.forEach(function (carte) {
   carte.addEventListener('click', function () {
-
     cartes.forEach(function (c) {
       c.classList.remove('ring-2', 'ring-teal-600');
     });
-
     carte.classList.add('ring-2', 'ring-teal-600');
+
+    articleId = carte.dataset.id
+    selectedCours = cours.find(c => c.id === articleId)
+    // console.log(item)
+    
+    selectedCours.innerHTML = '';
+    selectedCours.creneaux.forEach((btn) => {
+     
+      let btn_creneaux = document.createElement('button')
+      btn_creneaux.innerHTML = `<button type="button" class="btn-creneaux rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="mercredi-12:30">
+            Mercredi <span class="font-normal">12:30</span>
+          </button>`
+      slotsContainer.appendChild(btn_creneaux)  
+    })
   });
 });
 
@@ -101,6 +118,8 @@ cartes.forEach(function (carte) {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
+
+
 
 
 // ------------------------------------------------------------
