@@ -79,8 +79,8 @@ coursecontainer.innerHTML = carts;
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
 
-let articleId;
-let selectedCours;
+
+
 
 const coursTitle = document.querySelector("#selected-course-title")
 const cartes = document.querySelectorAll('.carte');
@@ -92,19 +92,20 @@ cartes.forEach(function (carte) {
     });
     carte.classList.add('ring-2', 'ring-teal-600');
 
-    articleId = carte.dataset.id
-    selectedCours = cours.find(c => c.id === articleId)
-    // console.log(item)
-    
-    selectedCours.innerHTML = '';
-    selectedCours.creneaux.forEach((btn) => {
-     
-      let btn_creneaux = document.createElement('button')
-      btn_creneaux.innerHTML = `<button type="button" class="btn-creneaux rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="mercredi-12:30">
-            Mercredi <span class="font-normal">12:30</span>
+    const articleId = carte.getAttribute('data-id');
+    console.log(articleId);
+    const selectedCours = cours.find(c => c.id === articleId)
+    coursTitle.textContent = selectedCours.nom;
+    slotsContainer.innerHTML = "";
+    selectedCours.creneaux.forEach(function (btn) {
+      slotsContainer.innerHTML += `<button type="button" class="btn-creneaux rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="${btn.jour}-${btn.heure}">
+            ${btn.jour} <span class="font-normal">${btn.heure}</span>
           </button>`
-      slotsContainer.appendChild(btn_creneaux)  
+
     })
+
+
+
   });
 });
 
