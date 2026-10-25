@@ -101,7 +101,6 @@ cartes.forEach(function (carte) {
       slotsContainer.innerHTML += `<button type="button" class="btn-creneaux rounded-xl border px-4 py-2 text-sm font-medium transition border-slate-300 bg-white text-slate-800 hover:border-teal-600" data-id="${btn.jour}-${btn.heure}">
             ${btn.jour} <span class="font-normal">${btn.heure}</span>
           </button>`
-
     })
 
 
